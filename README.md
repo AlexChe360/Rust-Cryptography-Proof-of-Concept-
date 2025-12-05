@@ -35,7 +35,6 @@ A small preferences endpoint is included to simulate basic user settings handlin
 
 This repository uses a **Cargo workspace**:
 
-```text
 rust-crypto-poc/
 ├── server/
 │   └── src/main.rs
@@ -65,13 +64,10 @@ This POC requires RNG support for Ed25519 key generation.
 
 In `server/Cargo.toml`:
 
-```toml
 ed25519-dalek = { version = "2", features = ["rand_core"] }
 
+---
 
-
-
-```md
 ## How to Run
 
 ```bash
