@@ -35,6 +35,7 @@ A small preferences endpoint is included to simulate basic user settings handlin
 
 This repository uses a **Cargo workspace**:
 
+```text
 rust-crypto-poc/
 ├── server/
 │   └── src/main.rs
@@ -45,7 +46,7 @@ rust-crypto-poc/
 ├── README.md
 └── .gitignore
 
-
+```
 - **server** — Axum 0.7 backend
 - **client** — minimal Rust script demonstrating the full 3-step flow
 
