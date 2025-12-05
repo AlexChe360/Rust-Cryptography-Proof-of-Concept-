@@ -35,18 +35,16 @@ A small preferences endpoint is included to simulate basic user settings handlin
 
 This repository uses a **Cargo workspace**:
 
+```text
 rust-crypto-poc/
-Cargo.toml
-Cargo.lock
-README.md
-.gitignore
-server/
-Cargo.toml
-src/main.rs
-client/
-Cargo.toml
-src/main.rs
-
+├── server/
+│   └── src/main.rs
+├── client/
+│   └── src/main.rs
+├── Cargo.toml
+├── Cargo.lock
+├── README.md
+└── .gitignore
 
 
 - **server** — Axum 0.7 backend
@@ -71,6 +69,14 @@ In `server/Cargo.toml`:
 ed25519-dalek = { version = "2", features = ["rand_core"] }
 
 
----
 
+
+```md
 ## How to Run
+
+```bash
+# terminal 1
+cargo run -p staged-access-server
+
+# terminal 2
+cargo run -p staged-access-client
