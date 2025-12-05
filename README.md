@@ -129,6 +129,7 @@ Simulates preliminary user verification using a hardcoded one-time code.
 
 **POST** `/api/step2/issue-credentials`
 Generates a temporary Ed25519 keypair.
+
 - **Returns the private seed to the client.**
 - **Stores the public key in memory for Step 3 validation.**
 
@@ -154,3 +155,68 @@ Generates a temporary Ed25519 keypair.
 **Errors**
 - **400 verification_token_required**
 - **401 invalid_or_expired_verification_token**
+
+---
+
+### 3) Credential-Based Session Entry
+
+**POST** `/api/step3/enter`
+Validates that the client possesses the issued temporary credential.
+
+**Request**
+```json
+{
+  "credential_id": "base64url...",
+  "message": "hello-proof",
+  "signature": "base64url(signature)"
+}
+```
+
+**Response 200**
+```json
+{
+  "session_token": "base64url...",
+  "expires_in_seconds": 1800
+}
+```
+
+**Errors**
+- **400 credential_id_required**
+- **400 message_required**
+- **400 signature_required**
+- **400 signature_not_base64url**
+- **400 signature_invalid_format**
+- **401 invalid_or_expired_credential**
+- **401 invalid_signature**
+
+---
+
+### 4) Preferences (No Storage)
+
+**POST** `/api/user/preferences`
+Accepts a small JSON object representing generic user settings.
+No persistence — validates basic shape and echoes the payload.
+
+**Request**
+```json
+{
+  "theme": "dark",
+  "notifications": true
+}
+```
+
+**Response 200**
+```json
+{
+  "ok": true,
+  "preferences": {
+    "theme": "dark",
+    "notifications": true
+  }
+}
+```
+
+**Errors**
+- **400 preferences_must_be_object**
+- **400 preferences_empty**
+- **400 invalid_preference_key**
